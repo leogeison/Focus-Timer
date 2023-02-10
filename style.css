@@ -18,14 +18,13 @@ body {
   font-family: 'Roboto', sans-serif;
   background-color: var(--bg-body);
   color: var(--tt-color);
-  display:flex;
+  display: flex;
   justify-items: center;
   min-height: 100vh;
 }
 
 main {
-  max-width: 82.1rem;
-
+  width: clamp(26rem, 26rem + 30vw, 92.1rem);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,24 +57,24 @@ button {
   line-height: 14.8rem;
 
   margin-bottom: 1.7rem;
-
+  animation: topDown 2000ms 250ms forwards;
 }
 
 #controls {
   display: flex;
   gap: 4rem;
+  animation: opacity 1000ms 300ms forwards;
 }
 
 #controls button:hover {
   transform: scale(1.1);
-
 }
 
 #cards {
   display: grid;
-  grid-template-columns: 1fr 1fr ;
+  grid-template-columns: 1fr 1fr;
   gap: 3.2rem;
-  
+  animation: downTop 2000ms 250ms forwards;
 }
 
 #cards button {
@@ -85,20 +84,56 @@ button {
   width: 13.8rem;
   height: 15.2rem;
   background-color: var(--card-color1);
-  
 }
 
-#cards button:hover   {
+#cards button:hover {
   background-color: var(--card-color2);
   transform: scale(1.1);
-
 }
 
 #cards button:hover svg path {
-  fill:#ffffff
+  fill: #ffffff;
 }
 
+@keyframes topDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
 
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
 
+  100% {
+    opacity: 1;
+  }
+}
 
+@keyframes downTop {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 1280px) {
+  main {
+    width: clamp(76rem, 44rem + 30vw, 92.1rem);
+    flex-direction: row;
+    gap: clamp(5rem, 5rem + 8vw, 19.2rem);
+    padding: 5rem 2rem;
+  }
+}
