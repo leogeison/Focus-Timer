@@ -95,6 +95,15 @@ button {
   fill: #ffffff;
 }
 
+#cards button:focus {
+  transform: scale(1.1);
+  background-color: var(--card-color2);
+}
+
+#cards button:focus svg path {
+  fill: #ffffff;
+}
+
 @keyframes topDown {
   0% {
     opacity: 0;
