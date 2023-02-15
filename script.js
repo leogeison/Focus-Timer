@@ -1,48 +1,91 @@
-const play = document.querySelector('.play')
-const pause = document.querySelector('.pause')
-const stop = document.querySelector('.stop')
-const increaseSound = document.querySelector('.increase-sound')
-const decreaseSound = document.querySelector('.decrease-sound')
+const buttonPlay = document.querySelector('.play')
+const buttonPause = document.querySelector('.pause')
+const buttonStop = document.querySelector('.stop')
+const buttonIncrease = document.querySelector('.increase-time')
+const buttonDecrease = document.querySelector('.decrease-time')
 const minutesDisplay = document.querySelector('.minutes')
 const secondsDisplay = document.querySelector('.seconds')
 const cardForest = document.querySelector('.forest')
 const cardRain = document.querySelector('.rain')
 const cardFirePlace = document.querySelector('.fireplace')
 const cardCoffeShop = document.querySelector('.coffe-shop')
+let timerTimeOut
+let minutes = Number(minutesDisplay.textContent)
 
-play.addEventListener('click', function () {
-  play.classList.add('hide')
-  pause.classList.remove('hide')
+buttonPlay.addEventListener('click', function () {
+  buttonPlay.classList.add('hide')
+  buttonPause.classList.remove('hide')
   coutdown()
 })
 
-pause.addEventListener('click', function () {
-  play.classList.remove('hide')
-  pause.classList.add('hide')
+buttonPause.addEventListener('click', function () {
+  resetControls()
+  hold()
 })
 
-stop.addEventListener('click', function () {
-  play.classList.remove('hide')
-  pause.classList.add('hide')
+buttonStop.addEventListener('click', function () {
+  hold()
+  updateTimerDisplay(minutes, 0)
+  resetControls()
 })
+
+buttonIncrease.addEventListener('click', function () {
+  increaseTime()
+})
+
+buttonDecrease.addEventListener('click', function () {
+  decreaseTime()
+})
+
+function hold() {
+  clearTimeout(timerTimeOut)
+}
+
+function resetControls() {
+  buttonPlay.classList.remove('hide')
+  buttonPause.classList.add('hide')
+}
+
+function updateTimerDisplay(minutes, seconds) {
+  minutesDisplay.textContent = String(minutes).padStart(2, '0')
+  secondsDisplay.textContent = String(seconds).padStart(2, '0')
+}
+
+function increaseTime() {
+  minutesDisplay.textContent = String(
+    Number(minutesDisplay.textContent) + 1
+  ).padStart(2, '0')
+}
+
+function decreaseTime() {
+  let newMinutes
+  let seconds = Number(secondsDisplay.textContent)
+  let minutes = Number(minutesDisplay.textContent)
+
+  if (minutes < 1) {
+    return
+  }
+
+  newMinutes = minutes - 1
+  updateTimerDisplay(newMinutes, seconds)
+}
+
 
 function coutdown() {
-  setTimeout(function () {
+  timerTimeOut = setTimeout(function () {
     let seconds = Number(secondsDisplay.textContent)
     let minutes = Number(minutesDisplay.textContent)
-    
+
     if (minutes <= 0 && seconds <= 0) {
-      play.classList.remove('hide')
-      pause.classList.add('hide')
-      
+      resetControls()
       return
     }
     if (seconds <= 0) {
-      seconds = 02
-      
-      minutesDisplay.textContent = String(minutes - 1).padStart(2, '0')
+      seconds = 05
+      --minutes
     }
-    secondsDisplay.textContent = String(seconds - 1).padStart(2, '0')
+
+    updateTimerDisplay(minutes, String(seconds - 1))
     coutdown()
   }, 1000)
 }
