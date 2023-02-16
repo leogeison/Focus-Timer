@@ -12,18 +12,28 @@ const cardCoffeShop = document.querySelector('.coffe-shop')
 let timerTimeOut
 let minutes = Number(minutesDisplay.textContent)
 
+const buttonPressAudio = new Audio('./sound/button-press.wav')
+const kichenTimer = new Audio('./sound/kichen-timer.mp3')
+const soundForest = new Audio('./sound/Floresta.wav')
+const soundRain = new Audio('./sound/Chuva.wav')
+const soundCoffeShop = new Audio('./sound/cafeteria.wav')
+const soundFirePlace = new Audio('./sound/Lareira.wav')
+
 buttonPlay.addEventListener('click', function () {
+  pressButton()
   buttonPlay.classList.add('hide')
   buttonPause.classList.remove('hide')
   coutdown()
 })
 
 buttonPause.addEventListener('click', function () {
+  pressButton()
   resetControls()
   hold()
 })
 
 buttonStop.addEventListener('click', function () {
+  pressButton()
   hold()
   updateTimerDisplay(minutes, 0)
   resetControls()
@@ -31,11 +41,81 @@ buttonStop.addEventListener('click', function () {
 
 buttonIncrease.addEventListener('click', function () {
   increaseTime()
+  pressButton()
 })
 
 buttonDecrease.addEventListener('click', function () {
+  pressButton()
   decreaseTime()
 })
+
+cardForest.addEventListener('click', function () {
+  soundCardForest()
+  forest()
+})
+
+cardRain.addEventListener('click', function () {
+  soundCardRain()
+  rain()
+})
+
+cardFirePlace.addEventListener('click', function () {
+  soundCardFirePlace()
+})
+
+cardCoffeShop.addEventListener('click', function () {
+  soundCardCoffeShop()
+})
+
+function forest() {
+  cardForest.classList.add('focus')
+  cardRain.classList.remove('focus')
+  cardFirePlace.classList.remove('focus')
+  cardCoffeShop.classList.remove('focus')
+}
+
+function rain() {
+  cardForest.classList.remove('focus')
+  cardRain.classList.add('focus')
+  cardFirePlace.classList.remove('focus')
+  cardCoffeShop.classList.remove('focus')
+}
+
+function pressButton() {
+  buttonPressAudio.play()
+}
+
+function timeEnd() {
+  kichenTimer.play()
+}
+
+function soundCardForest() {
+  soundForest.play()
+  soundRain.pause()
+  soundCoffeShop.pause()
+  soundFirePlace.pause()
+}
+
+function soundCardRain() {
+  soundForest.pause()
+  soundRain.play()
+  soundCoffeShop.pause()
+  soundFirePlace.pause()
+}
+
+function soundCardCoffeShop() {
+  soundForest.pause()
+  soundRain.pause()
+  soundCoffeShop.play()
+  soundFirePlace.pause()
+}
+
+function soundCardFirePlace() {
+  soundForest.pause()
+  soundRain.pause()
+  soundCoffeShop.pause()
+  soundFirePlace.play()
+}
 
 function hold() {
   clearTimeout(timerTimeOut)
@@ -70,13 +150,13 @@ function decreaseTime() {
   updateTimerDisplay(newMinutes, seconds)
 }
 
-
 function coutdown() {
   timerTimeOut = setTimeout(function () {
     let seconds = Number(secondsDisplay.textContent)
     let minutes = Number(minutesDisplay.textContent)
 
     if (minutes <= 0 && seconds <= 0) {
+      timeEnd()
       resetControls()
       return
     }

@@ -96,7 +96,6 @@ button {
 }
 
 #cards button:focus {
-  transform: scale(1.1);
   background-color: var(--card-color2);
 }
 
@@ -146,3 +145,5 @@ button {
     padding: 5rem 2rem;
   }
 }
+
+
