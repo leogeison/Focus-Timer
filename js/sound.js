@@ -3,7 +3,7 @@ export default function Sound() {
   const kichenTimer = new Audio('./sound/kichen-timer.mp3')
   const soundForest = new Audio('./sound/Floresta.wav')
   const soundRain = new Audio('./sound/Chuva.wav')
-  const soundCoffeShop = new Audio('./sound/cafeteria.wav')
+  const soundCoffeShop = new Audio('./sound/Cafeteria.wav')
   const soundFirePlace = new Audio('./sound/Lareira.wav')
 
   soundForest.loop = true

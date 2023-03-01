@@ -11,6 +11,7 @@
   --card-color2: #02799d;
 
   --tt-color: #323238;
+  
 }
 
 body {
@@ -84,6 +85,7 @@ button {
   width: 13.8rem;
   height: 15.2rem;
   background-color: var(--card-color1);
+  
 }
 
 #cards button:hover {
@@ -95,13 +97,50 @@ button {
   fill: #ffffff;
 }
 
+#cards button:hover input[type='range']{
+  background: #ffffff;
+}
+
+#cards button:hover input[type='range']::-webkit-slider-thumb{
+  background: #ffffff;
+}
+
 #cards button:focus {
   background-color: var(--card-color2);
 }
 
+
 #cards button:focus svg path {
   fill: #ffffff;
 }
+
+#cards button:focus input[type='range']{
+  background: #ffffff;
+}
+
+#cards button:focus input[type='range']::-webkit-slider-thumb{
+  background: #ffffff;
+}
+
+.volume {
+  -webkit-appearance: none;
+ width: 9rem;
+ height: 0.6rem;
+ border-radius: 9999px;
+ background: var(--tt-color);
+ position: relative;
+ top: -3.2rem;
+ 
+}
+
+.volume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--tt-color);
+}
+
 
 @keyframes topDown {
   0% {
@@ -145,5 +184,6 @@ button {
     padding: 5rem 2rem;
   }
 }
+
 
 
