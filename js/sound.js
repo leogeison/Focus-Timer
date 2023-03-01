@@ -52,6 +52,10 @@ export default function Sound() {
     soundCardForest,
     soundCardRain,
     soundCardCoffeShop,
-    soundCardFirePlace
+    soundCardFirePlace,
+    soundRain,
+    soundForest,
+    soundCoffeShop,
+    soundFirePlace
   }
 }

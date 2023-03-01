@@ -13,6 +13,10 @@ const cardForest = document.querySelector('.forest')
 const cardRain = document.querySelector('.rain')
 const cardFirePlace = document.querySelector('.fireplace')
 const cardCoffeShop = document.querySelector('.coffe-shop')
+const volumeForest = cardForest.querySelector('input')
+const volumeRain = cardRain.querySelector('input')
+const volumeFirePlace = cardFirePlace.querySelector('input')
+const volumeCoffeshop = cardCoffeShop.querySelector('input')
 
 const controls = Controls({ buttonPlay, buttonPause })
 const timer = Timer({
@@ -64,4 +68,20 @@ cardFirePlace.addEventListener('click', function () {
 
 cardCoffeShop.addEventListener('click', function () {
   sound.soundCardCoffeShop()
+})
+
+volumeForest.addEventListener('input', function () {
+  sound.soundForest.volume = this.value
+})
+
+volumeRain.addEventListener('input', function () {
+  sound.soundRain.volume = this.value
+})
+
+volumeFirePlace.addEventListener('input', function () {
+  sound.soundFirePlace.volume = this.value
+})
+
+volumeCoffeshop.addEventListener('input', function () {
+  sound.soundCoffeShop.volume = this.value
 })
