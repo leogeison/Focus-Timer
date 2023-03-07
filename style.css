@@ -16,11 +16,10 @@
 .dark-mode {
   --bg-body: #121214;
   --tt-color: #ffffff;
-  --card-color1: #29292E;
-  --card-color2: #0A3442;
-  --controls-color:#C4C4CC;
-  
-  }
+  --card-color1: #29292e;
+  --card-color2: #0a3442;
+  --controls-color: #c4c4cc;
+}
 
 body {
   font-size: 1.6rem;
@@ -30,7 +29,7 @@ body {
   justify-items: center;
   min-height: 100vh;
   background-color: var(--bg-body);
-  
+  transition: background-color 0.5s ease;
 }
 
 main {
@@ -115,24 +114,24 @@ button {
   background: #ffffff;
 }
 
-#cards button:focus {
+#cards button.focus {
   background-color: var(--card-color2);
 }
 
-#cards button:focus svg path {
+#cards button.focus svg path {
   fill: #ffffff;
 }
 
-#cards button:focus input[type='range'] {
+#cards button.focus input[type='range'] {
   background: #ffffff;
 }
 
-#cards button:focus input[type='range']::-webkit-slider-thumb {
+#cards button.focus input[type='range']::-webkit-slider-thumb {
   background: #ffffff;
 }
 
 .dark-mode #cards button svg path,
-.dark-mode #cards input[type="range"]::-webkit-slider-thumb {
+.dark-mode #cards input[type='range']::-webkit-slider-thumb {
   fill: #ffffff;
 }
 
@@ -152,6 +151,12 @@ button {
   height: 1.6rem;
   border-radius: 50%;
   background: var(--tt-color);
+}
+
+footer {
+  position: absolute;
+  top: 6rem;
+  right: 6rem;
 }
 
 @keyframes topDown {

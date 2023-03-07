@@ -2,21 +2,33 @@ import Controls from './controls.js'
 import Timer from './timer.js'
 import Sound from './sound.js'
 
+const body = document.body
+
 const buttonPlay = document.querySelector('.play')
 const buttonPause = document.querySelector('.pause')
 const buttonStop = document.querySelector('.stop')
 const buttonIncrease = document.querySelector('.increase-time')
 const buttonDecrease = document.querySelector('.decrease-time')
+
 const minutesDisplay = document.querySelector('.minutes')
 const secondsDisplay = document.querySelector('.seconds')
+
 const cardForest = document.querySelector('.forest')
 const cardRain = document.querySelector('.rain')
 const cardFirePlace = document.querySelector('.fireplace')
 const cardCoffeShop = document.querySelector('.coffe-shop')
+
 const volumeForest = cardForest.querySelector('input')
 const volumeRain = cardRain.querySelector('input')
 const volumeFirePlace = cardFirePlace.querySelector('input')
 const volumeCoffeshop = cardCoffeShop.querySelector('input')
+
+const theme = document.querySelector('#themes')
+const lightMode = document.querySelector('.light-mode')
+const darkMode = document.querySelector('.dark-mode')
+
+const buttons = document.querySelectorAll('#cards button')
+let focusedButton = null
 
 const controls = Controls({ buttonPlay, buttonPause })
 const timer = Timer({
@@ -84,4 +96,30 @@ volumeFirePlace.addEventListener('input', function () {
 
 volumeCoffeshop.addEventListener('input', function () {
   sound.soundCoffeShop.volume = this.value
+})
+
+theme.addEventListener('click', () => {
+  body.classList.toggle('dark-mode')
+  const isDarkMode = body.classList.contains('dark-mode')
+  localStorage.setItem('isDarkMode', isDarkMode)
+
+  lightMode.classList.toggle('hide')
+  darkMode.classList.toggle('hide')
+})
+
+const isDarkMode = localStorage.getItem('isDarkMode') === 'true'
+if (isDarkMode) {
+  body.classList.add('dark-mode')
+  lightMode.classList.add('hide')
+  darkMode.classList.remove('hide')
+}
+
+buttons.forEach(button => {
+  button.addEventListener('focus', () => {
+    if (focusedButton) {
+      focusedButton.classList.remove('focus')
+    }
+    focusedButton = button
+    button.classList.add('focus')
+  })
 })
