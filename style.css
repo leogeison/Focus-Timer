@@ -6,21 +6,31 @@
 
 :root {
   font-size: 62.5%;
-  --bg-body: #e5e5e5;
+  --bg-body: #ffffff;
   --card-color1: #e1e1e6;
   --card-color2: #02799d;
 
   --tt-color: #323238;
 }
 
+.dark-mode {
+  --bg-body: #121214;
+  --tt-color: #ffffff;
+  --card-color1: #29292E;
+  --card-color2: #0A3442;
+  --controls-color:#C4C4CC;
+  
+  }
+
 body {
   font-size: 1.6rem;
   font-family: 'Roboto', sans-serif;
-  background-color: var(--bg-body);
   color: var(--tt-color);
   display: flex;
   justify-items: center;
   min-height: 100vh;
+  background-color: var(--bg-body);
+  
 }
 
 main {
@@ -29,7 +39,6 @@ main {
   flex-direction: column;
   align-items: center;
   gap: 4.8rem;
-  background-color: #ffffff;
 
   margin: auto;
   border-radius: 3rem;
@@ -64,6 +73,9 @@ button {
   display: flex;
   gap: 4rem;
   animation: opacity 1000ms 300ms forwards;
+}
+.dark-mode #controls svg path {
+  fill: var(--controls-color);
 }
 
 #controls button:hover {
@@ -117,6 +129,11 @@ button {
 
 #cards button:focus input[type='range']::-webkit-slider-thumb {
   background: #ffffff;
+}
+
+.dark-mode #cards button svg path,
+.dark-mode #cards input[type="range"]::-webkit-slider-thumb {
+  fill: #ffffff;
 }
 
 .volume {
